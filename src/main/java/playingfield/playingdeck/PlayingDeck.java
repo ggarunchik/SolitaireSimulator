@@ -1,42 +1,46 @@
 package playingfield.playingdeck;
 
 import playingcards.Card;
+import playingcards.PlayingCard;
 import playingcards.PlayingCardsFactory;
 import utils.ConfigReader;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class PlayingDeck {
 
-    private final String[] currentPlayingDeck = ConfigReader.getConfigLine(0);
+    private final String[] currentPlayingDeckConfig = ConfigReader.getConfigLine(0);
     private PlayingCardsFactory playingCardsFactory;
-    private List<Card> currentPLayingDeck;
+    private HashMap<Integer, PlayingCard> currentPlayingDeck;
 
     public PlayingDeck() {
         initStartPlayingDeck();
     }
 
-    public List<Card> initStartPlayingDeck() {
+    public HashMap<Integer, PlayingCard> initStartPlayingDeck() {
         playingCardsFactory = new PlayingCardsFactory();
-        currentPLayingDeck = new ArrayList<Card>();
+        currentPlayingDeck = new HashMap<>();
+        int count = 0;
 
-        for (String value : currentPlayingDeck) {
+        for (String value : currentPlayingDeckConfig) {
             if (value.toCharArray().length > 1) {
                 char face = value.charAt(0);
                 char suit = value.charAt(1);
-                currentPLayingDeck.add(playingCardsFactory.createCard(String.valueOf(face), String.valueOf(suit)));
+                currentPlayingDeck.put(count, playingCardsFactory.createCard(String.valueOf(face), String.valueOf(suit)));
+                count++;
             } else {
-                currentPLayingDeck.add(playingCardsFactory.createRandomCard());
+                currentPlayingDeck.put(count, playingCardsFactory.createRandomCard());
+                count++;
             }
         }
-        System.out.println(Arrays.deepToString(new List[]{currentPLayingDeck}));
 
-        return currentPLayingDeck;
+        System.out.println("Playing deck has been inited: ");
+        System.out.println(currentPlayingDeck);
+
+        return currentPlayingDeck;
     }
 
-    public List<Card> getCurrentPlayingDeckConfig(){
-        return currentPLayingDeck;
+    public HashMap<Integer, PlayingCard> getCurrentPlayingDeckConfig() {
+        return currentPlayingDeck;
     }
 }

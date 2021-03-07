@@ -1,16 +1,22 @@
 package playingfield;
 
-import playingcards.Card;
+import playingcards.PlayingCard;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 
 public interface StateCases {
 
-    List<Card> getCurrentHandCard();
-    List<Card> checkForPlayableCards() throws IOException;
-    void playCard();
+    List<PlayingCard> getCurrentHandCard();
+
+    HashMap<Integer, PlayingCard> checkForPlayableCards() throws IOException;
+
+    HashMap<Integer, PlayingCard> playCard(HashMap playableCards);
+
     void takeCardFromDeck();
+
     void playPlusFive();
+
     void playWildCard();
 }

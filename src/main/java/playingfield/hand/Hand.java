@@ -1,6 +1,7 @@
 package playingfield.hand;
 
 import playingcards.Card;
+import playingcards.PlayingCard;
 import playingcards.PlayingCardsFactory;
 import utils.ConfigReader;
 
@@ -12,15 +13,15 @@ public class Hand {
 
     private final String[] currentHandConfigArray = ConfigReader.getConfigLine(7);
     private PlayingCardsFactory playingCardsFactory;
-    private List<Card> currentHandCard;
+    private List<PlayingCard> currentHandCard;
 
     public Hand() {
         initStartHand();
     }
 
-    public List<Card> initStartHand() {
+    public List<PlayingCard> initStartHand() {
         playingCardsFactory = new PlayingCardsFactory();
-        currentHandCard = new ArrayList<Card>();
+        currentHandCard = new ArrayList<PlayingCard>();
 
         for (String value : currentHandConfigArray) {
             if (value.toCharArray().length > 1) {
@@ -31,12 +32,19 @@ public class Hand {
                 currentHandCard.add(playingCardsFactory.createRandomCard());
             }
         }
+        System.out.println("Card in the han has been inited: ");
         System.out.println(Arrays.deepToString(new List[]{currentHandCard}));
 
         return currentHandCard;
     }
 
-    public Card getCurrentHandCard(){
+    public PlayingCard getCurrentHandCard(){
         return currentHandCard.get(0);
+    }
+
+    public Card setCurrentHandCard(PlayingCard card){
+        currentHandCard.clear();
+        currentHandCard.add(card);
+        return card;
     }
 }

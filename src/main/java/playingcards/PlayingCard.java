@@ -79,9 +79,6 @@ public class PlayingCard implements Card {
 
     @Override
     public String toString() {
-        return "PlayingCard{" +
-                "face='" + face + '\'' +
-                ", suit='" + suit + '\'' +
-                '}';
+        return face + suit;
     }
 }

@@ -17,8 +17,6 @@ public class ConsoleMenu implements MenuActions {
 
     public void menu() {
         enterSimulationTryAmount();
-        PlayingCardsFactory playingCardsFactory = new PlayingCardsFactory();
-        System.out.println(  playingCardsFactory.createCard("A", "S"));
     }
 
 

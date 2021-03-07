@@ -12,15 +12,15 @@ import java.util.List;
 
 public class Deck {
     private PlayingCardsFactory playingCardsFactory;
-    private List<Card> currentDeck;
+    private List<PlayingCard> currentDeck;
 
     public Deck() {
         initDeck();
     }
 
-    public List<Card> initDeck() {
+    public List<PlayingCard> initDeck() {
         playingCardsFactory = new PlayingCardsFactory();
-        currentDeck = new ArrayList<Card>();
+        currentDeck = new ArrayList<PlayingCard>();
         String[] currentDeckArray = ConfigReader.getConfigLine(6);
         for (String value : currentDeckArray) {
             if (value.toCharArray().length > 1) {
@@ -31,6 +31,7 @@ public class Deck {
                 currentDeck.add(playingCardsFactory.createRandomCard());
             }
         }
+        System.out.println("Deck has been inited: ");
         System.out.println(Arrays.deepToString(new List[]{currentDeck}));
         return currentDeck;
     }
