@@ -14,9 +14,9 @@ public interface StateCases {
 
     void playCard() throws IOException, InvalidCardException;
 
-    void takeCardFromDeck();
+    void takeCardFromDeck() throws InvalidCardException;
 
-    void playPlusFive();
+    void playPlusFive() throws InvalidCardException;
 
-    void playWildCard();
+    void playWildCard() throws InvalidCardException;
 }

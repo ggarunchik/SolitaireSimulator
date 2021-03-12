@@ -1,5 +1,6 @@
 package playingfield;
 
+import boosters.plusfive.BoosterPlusFiveFactory;
 import org.apache.commons.lang3.ArrayUtils;
 import playingcards.InvalidCardException;
 import playingcards.PlayingCard;
@@ -128,20 +129,23 @@ public class SimulatorDriver implements StateCases {
     }
 
     @Override
-    public void takeCardFromDeck() {
+    public void takeCardFromDeck() throws InvalidCardException {
         if (!deck.isDeckEmpty(currentDeckCards)) {
             PlayingCard playingCard = hand.setCurrentHandCard(deck.getNextCard(currentDeckCards));
             System.out.println("I took a card from the deck: " +playingCard );
             System.out.println("Current deck is: " + currentDeckCards);
         }else {
             System.out.println("Deck is empty");
-            throw new IndexOutOfBoundsException();
+            playPlusFive();
         }
     }
 
     @Override
-    public void playPlusFive() {
-
+    public void playPlusFive() throws InvalidCardException {
+        System.out.println("I activated +5 booster");
+        BoosterPlusFiveFactory boosterPlusFiveFactory = new BoosterPlusFiveFactory();
+        currentDeckCards = boosterPlusFiveFactory.createBooster();
+        System.out.println("Current deck is: " + currentDeckCards);
     }
 
     @Override

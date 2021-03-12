@@ -1,7 +1,5 @@
 package playingcards;
 
-import java.util.Random;
-
 public class PlayingCardsFactory implements CardsFactory {
     public static final SuitBidiMap suits = new SuitBidiMap();
     public static final FaceBidiMap faces = new FaceBidiMap();

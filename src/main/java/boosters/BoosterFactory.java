@@ -1,5 +1,10 @@
 package boosters;
 
+import playingcards.InvalidCardException;
+import playingcards.PlayingCard;
+
+import java.util.List;
+
 public interface BoosterFactory {
-    void createBooster();
+    List<PlayingCard> createBooster() throws InvalidCardException;
 }
