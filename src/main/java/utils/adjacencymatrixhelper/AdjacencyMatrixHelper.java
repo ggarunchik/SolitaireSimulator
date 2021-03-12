@@ -6,7 +6,7 @@ import java.util.List;
 public class AdjacencyMatrixHelper {
 
     public static void printGraph(int matrix[][]) {
-        System.out.println("Graph: (Adjacency Matrix)");
+        System.out.println("Current Graph: (Adjacency Matrix)");
         int vertexAmount = matrix.length;
         for (int i = 0; i < vertexAmount; i++) {
             for (int j = 0; j < vertexAmount; j++) {
@@ -32,6 +32,5 @@ public class AdjacencyMatrixHelper {
 
     public static void removeEdge(int[][] matrix, int i, int j) {
         matrix[i][j] = -1;
-        matrix[j][i] = -1;
     }
 }

@@ -1,6 +1,7 @@
 package playingfield.playingdeck;
 
 import playingcards.Card;
+import playingcards.InvalidCardException;
 import playingcards.PlayingCard;
 import playingcards.PlayingCardsFactory;
 import utils.ConfigReader;
@@ -13,11 +14,11 @@ public class PlayingDeck {
     private PlayingCardsFactory playingCardsFactory;
     private HashMap<Integer, PlayingCard> currentPlayingDeck;
 
-    public PlayingDeck() {
+    public PlayingDeck() throws InvalidCardException {
         initStartPlayingDeck();
     }
 
-    public HashMap<Integer, PlayingCard> initStartPlayingDeck() {
+    public HashMap<Integer, PlayingCard> initStartPlayingDeck() throws InvalidCardException {
         playingCardsFactory = new PlayingCardsFactory();
         currentPlayingDeck = new HashMap<>();
         int count = 0;
@@ -26,7 +27,7 @@ public class PlayingDeck {
             if (value.toCharArray().length > 1) {
                 char face = value.charAt(0);
                 char suit = value.charAt(1);
-                currentPlayingDeck.put(count, playingCardsFactory.createCard(String.valueOf(face), String.valueOf(suit)));
+                currentPlayingDeck.put(count, playingCardsFactory.createCard(String.valueOf(face) + String.valueOf(suit)));
                 count++;
             } else {
                 currentPlayingDeck.put(count, playingCardsFactory.createRandomCard());
@@ -34,8 +35,8 @@ public class PlayingDeck {
             }
         }
 
-        System.out.println("Playing deck has been inited: ");
-        System.out.println(currentPlayingDeck);
+//        System.out.println("Playing deck has been inited: ");
+//        System.out.println(currentPlayingDeck);
 
         return currentPlayingDeck;
     }

@@ -3,18 +3,19 @@ package playingcards;
 import java.util.Random;
 
 public class PlayingCardsFactory implements CardsFactory {
+    public static final SuitBidiMap suits = new SuitBidiMap();
+    public static final FaceBidiMap faces = new FaceBidiMap();
 
     @Override
-    public PlayingCard createCard(String face, String suit) {
-        return new PlayingCard(face, suit);
+    public PlayingCard createCard(String cardCode) throws InvalidCardException {
+        return new PlayingCard(cardCode);
     }
 
     @Override
-    public PlayingCard createRandomCard() {
-        Random random = new Random();
-        int randomFace = random.nextInt(PlayingCard.getFACES().length);
-        int randomSuit = random.nextInt(PlayingCard.getSUITS().length);
+    public PlayingCard createRandomCard() throws InvalidCardException {
+        String randomFace = faces.getRandomFace();
+        String randomSuit = suits.getRandomSuit();
 
-        return new PlayingCard(PlayingCard.getFACES()[randomFace], PlayingCard.getSUITS()[randomSuit]);
+        return new PlayingCard(randomFace + randomSuit);
     }
 }

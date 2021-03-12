@@ -1,84 +1,72 @@
 package playingcards;
 
-import java.util.Arrays;
 
 public class PlayingCard implements Card {
-    private String face;
-    private String suit;
+    public static final SuitBidiMap suits = new SuitBidiMap();
+    public static final FaceBidiMap faces = new FaceBidiMap();
 
-    /**
-     * All possible suits a card may have
-     */
-    public static final String[] SUITS = {"S", "H", "D", "C"};
+    private Face face;
+    private Suit suit;
 
-    /**
-     * All possible face values a card may have
-     */
-    public static final String[] FACES = {"A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"};
+    public PlayingCard(String cardCode) throws InvalidCardException {
+        String face = null;
+        String suit = null;
+        // Use first letters of card_code
+        face = cardCode.substring(0, cardCode.length() - 1);
+        // Use last letter in card_code
+        suit = String.valueOf(cardCode.charAt(cardCode.length() - 1));
 
-    public PlayingCard(String faceName, String suitName) {
-        setFace(faceName);
-        setSuit(suitName);
+        // Set card values
+        this.face = faces.getFace(face);
+        this.suit = suits.getSuit(suit);
+
+        // Invalid rank or suit
+        if (this.face == null || this.suit == null) {
+            throw new InvalidCardException(
+                    String.format("Invalid card %s", cardCode));
+        }
     }
 
     @Override
-    public void setFace(String faceName) {
-        if (isValidFace(faceName))
-            this.face = faceName;
+    public Face getFace() {
+        return this.face;
     }
 
     @Override
-    public void setSuit(String suitName) {
-        if (isValidSuit(suitName))
-            this.suit = suitName;
+    public int getFaceNum() {
+        return faces.getFaceWeight(this.face);
     }
 
-    public String getFace() {
-        return face;
+    @Override
+    public Suit getSuit() {
+        return this.suit;
     }
 
-    public String getSuit() {
-        return suit;
+    public String getSuitChar(Suit key) {
+        return suits.getSuitChar(key);
     }
 
-    public static String[] getSUITS() {
-        return SUITS;
-    }
-
-    public static String[] getFACES() {
-        return FACES;
-    }
-
-    /**
-     * Find if passed face name is valid to use
-     *
-     * @param faceName - passed value
-     * @return - result if face name is valid
-     */
-    private boolean isValidFace(String faceName) {
-        boolean containsFace = Arrays.stream(FACES).anyMatch(faceName::equals);
-        if (!containsFace) {
-            throw new IllegalArgumentException("Invalid Face!" + " actual: " + faceName + " expected: " + Arrays.deepToString(FACES));
+    public String getFacePrint() {
+        int symbol = this.getFaceNum();
+        if (symbol == 1) {
+            return "A";
+        } else if (symbol == 10) {
+            return "10";
+        } else if (symbol == 11) {
+            return "J";
+        } else if (symbol == 12) {
+            return "Q";
+        } else if (symbol == 13) {
+            return "K";
         }
-        return containsFace;
-    }
-
-    /**
-     * Find if passed suit is valid to use
-     *
-     * @param suiteName - passed value
-     * @return - result if suit is valid
-     */
-    private boolean isValidSuit(String suiteName) {
-        boolean containsSuit = Arrays.stream(SUITS).anyMatch(suiteName::equals);
-        if (!containsSuit) {
-            throw new IllegalArgumentException("Invalid Face!" + " actual: " + suiteName + " expected: " + Arrays.deepToString(SUITS));
-        }
-        return containsSuit;
+        return Integer.toString(symbol);
     }
 
     @Override
     public String toString() {
-        return face + suit;
+        if (this.getFacePrint() == "10") {
+            return this.getFacePrint() + suits.getSuitChar(this.suit) + " ";
+        }
+        return " " + this.getFacePrint() + suits.getSuitChar(this.suit) + " ";
     }
 }

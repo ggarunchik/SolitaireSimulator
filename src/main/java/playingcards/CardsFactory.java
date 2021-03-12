@@ -1,7 +1,7 @@
 package playingcards;
 
 public interface CardsFactory {
-    PlayingCard createCard(String face, String suit);
-    PlayingCard createRandomCard();
+    PlayingCard createCard(String cardCode) throws InvalidCardException;
+    PlayingCard createRandomCard() throws InvalidCardException;
 
 }
