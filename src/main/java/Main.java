@@ -1,17 +1,15 @@
 import consolecontroller.ConsoleMenu;
+import playingcards.InvalidCardException;
 import playingfield.SimulatorDriver;
-import playingfield.deck.Deck;
 
-import java.io.IOException;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InvalidCardException {
         new ConsoleMenu();
-        new Deck();
         SimulatorDriver simulatorDriver = new SimulatorDriver();
         try {
-            simulatorDriver.checkForPlayableCards();
-        } catch (IOException e) {
+            simulatorDriver.simulation();
+        } catch ( InvalidCardException e) {
             e.printStackTrace();
         }
     }
