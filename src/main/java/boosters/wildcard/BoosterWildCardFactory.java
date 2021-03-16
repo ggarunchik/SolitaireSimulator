@@ -1,14 +1,10 @@
 package boosters.wildcard;
 
+import boosters.Booster;
 import boosters.BoosterFactory;
-import playingcards.PlayingCard;
-
-import java.util.List;
 
 public class BoosterWildCardFactory implements BoosterFactory {
-    @Override
-    public List<PlayingCard> createBooster() {
-
-        return null;
+    public BoosterWildCard createBooster() {
+        return new BoosterWildCard();
     }
 }

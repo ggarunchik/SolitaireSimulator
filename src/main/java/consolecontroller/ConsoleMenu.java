@@ -5,9 +5,6 @@ import utils.ConsoleInputHandler;
 
 public class ConsoleMenu implements MenuActions {
 
-    public ConsoleMenu() {
-        menu();
-    }
 
     @Override
     public int enterSimulationTryAmount() {

@@ -8,6 +8,7 @@ public class PlayingCard implements Card {
     private Face face;
     private Suit suit;
 
+
     public PlayingCard(String cardCode) throws InvalidCardException {
         String face = null;
         String suit = null;
@@ -23,17 +24,14 @@ public class PlayingCard implements Card {
         }
     }
 
-    @Override
     public Face getFace() {
         return this.face;
     }
 
-    @Override
     public int getFaceNum() {
         return faces.getFaceWeight(this.face);
     }
 
-    @Override
     public Suit getSuit() {
         return this.suit;
     }
