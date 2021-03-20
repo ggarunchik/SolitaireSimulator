@@ -1,6 +1,5 @@
 package playingfield.playingdeck;
 
-import playingcards.Card;
 import playingcards.InvalidCardException;
 import playingcards.PlayingCard;
 import playingcards.PlayingCardsFactory;
@@ -34,14 +33,12 @@ public class PlayingDeck {
                 count++;
             }
         }
-
-//        System.out.println("Playing deck has been inited: ");
-//        System.out.println(currentPlayingDeck);
-
         return currentPlayingDeck;
     }
 
     public HashMap<Integer, PlayingCard> getCurrentPlayingDeckConfig() {
         return currentPlayingDeck;
     }
+
+
 }
