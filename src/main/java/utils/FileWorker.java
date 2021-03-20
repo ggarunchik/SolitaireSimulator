@@ -66,5 +66,24 @@ public class FileWorker {
         FileWorker.writeToLogFile("Current hand : " + currentHand);
     }
 
+    public static void writePercentileToLog(List<Integer> boosterUsage, String boosterType) {
+        switch (boosterType) {
+            case "WILD":
+                FileWorker.writeToResultsFile("Wild Card Stats:");
+                FileWorker.writeToResultsFile("25th: " + PercentileHelper.Percentile(boosterUsage, 25));
+                FileWorker.writeToResultsFile("50th: " + PercentileHelper.Percentile(boosterUsage, 50));
+                FileWorker.writeToResultsFile("75th: " + PercentileHelper.Percentile(boosterUsage, 75));
+                FileWorker.writeToResultsFile("100th: " + PercentileHelper.Percentile(boosterUsage, 100));
+                break;
+
+            case "PLUSFIVE":
+                FileWorker.writeToResultsFile("Plus Five Stats:");
+                FileWorker.writeToResultsFile("25th: " + PercentileHelper.Percentile(boosterUsage, 25));
+                FileWorker.writeToResultsFile("50th: " + PercentileHelper.Percentile(boosterUsage, 50));
+                FileWorker.writeToResultsFile("75th: " + PercentileHelper.Percentile(boosterUsage, 75));
+                FileWorker.writeToResultsFile("100th: " + PercentileHelper.Percentile(boosterUsage, 100));
+        }
+    }
+
 }
 

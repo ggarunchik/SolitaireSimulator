@@ -11,12 +11,10 @@ import playingfield.deck.Deck;
 import playingfield.hand.Hand;
 import playingfield.playingdeck.PlayingDeck;
 import utils.FileWorker;
-import utils.PercentileHelper;
 import utils.adjacencymatrixhelper.AdjacencyMatrixHelper;
 import utils.ConfigReader;
 import utils.adjacencymatrixhelper.Edge;
 
-import java.io.File;
 import java.util.*;
 
 public class SimulatorDriver implements StateCases {
@@ -101,20 +99,10 @@ public class SimulatorDriver implements StateCases {
             FileWorker.writeToLogFile("#" + count);
         }
         FileWorker.writeToResultsFile("Amount of rounds: " +  amountOfRounds);
-        FileWorker.writeToResultsFile("Wild Card Stats:");
-        FileWorker.writeToResultsFile("25th: " + PercentileHelper.Percentile(wildCardUsed, 25));
-        FileWorker.writeToResultsFile("50th: " + PercentileHelper.Percentile(wildCardUsed, 50));
-        FileWorker.writeToResultsFile("75th: " + PercentileHelper.Percentile(wildCardUsed, 75));
-        FileWorker.writeToResultsFile("100th: " + PercentileHelper.Percentile(wildCardUsed, 100));
-
-        FileWorker.writeToResultsFile("Plus Five Stats:");
-        FileWorker.writeToResultsFile("25th: " + PercentileHelper.Percentile(plusFiveUsed, 25));
-        FileWorker.writeToResultsFile("50th: " + PercentileHelper.Percentile(plusFiveUsed, 50));
-        FileWorker.writeToResultsFile("75th: " + PercentileHelper.Percentile(plusFiveUsed, 75));
-        FileWorker.writeToResultsFile("100th: " + PercentileHelper.Percentile(plusFiveUsed, 100));
+        FileWorker.writePercentileToLog(wildCardUsed, "WILD");
+        FileWorker.writePercentileToLog(plusFiveUsed, "PLUSFIVE");
 
         long endTime = System.nanoTime();
-
         long timeElapsed = endTime - startTime;
         System.out.println("Execution time in milliseconds : " +
                 timeElapsed / 1000000);

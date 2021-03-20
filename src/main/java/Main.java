@@ -9,7 +9,7 @@ public class Main {
         SimulatorDriver simulatorDriver = new SimulatorDriver();
         try {
             simulatorDriver.simulation(consoleMenu.enterSimulationTryAmount());
-        } catch ( InvalidCardException e) {
+        } catch (InvalidCardException e) {
             e.printStackTrace();
         }
     }
