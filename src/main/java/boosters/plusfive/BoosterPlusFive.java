@@ -1,36 +1,28 @@
-package playingfield.deck;
+package boosters.plusfive;
 
-
+import boosters.Booster;
 import playingcards.InvalidCardException;
 import playingcards.PlayingCard;
 import playingcards.PlayingCardsFactory;
-import utils.ConfigReader;
+import playingfield.deck.Pack;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Deck implements Pack {
+public class BoosterPlusFive implements Booster, Pack {
     private PlayingCardsFactory playingCardsFactory;
     private List<PlayingCard> currentDeck;
 
-    public Deck() throws InvalidCardException {
-        initDeck();
-    }
 
     @Override
     public List<PlayingCard> initDeck() throws InvalidCardException {
         playingCardsFactory = new PlayingCardsFactory();
         currentDeck = new ArrayList<PlayingCard>();
-        String[] currentDeckArray = ConfigReader.getConfigLine(6);
-        for (String value : currentDeckArray) {
-            if (value.toCharArray().length > 1) {
-                char face = value.charAt(0);
-                char suit = value.charAt(1);
-                currentDeck.add(playingCardsFactory.createCard(String.valueOf(face) +String.valueOf(suit)));
-            } else {
-                currentDeck.add(playingCardsFactory.createRandomCard());
-            }
+
+        for (int i = 0; i < 5; i++) {
+            currentDeck.add(playingCardsFactory.createRandomCard());
         }
+
         return currentDeck;
     }
 
@@ -45,5 +37,4 @@ public class Deck implements Pack {
     public boolean isDeckEmpty(List<PlayingCard> currentDeckCards) {
         return currentDeckCards.size() == 0;
     }
-
 }

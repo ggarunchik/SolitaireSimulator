@@ -27,8 +27,6 @@ public class ConfigReader {
                 count++;
             }
         }
-        //System.out.println(Arrays.deepToString(myArray));
-        //AdjacencyMatrixHelper.printGraph(myArray);
         return myArray;
     }
 

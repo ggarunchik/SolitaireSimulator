@@ -5,10 +5,10 @@ import playingfield.SimulatorDriver;
 
 public class Main {
     public static void main(String[] args) throws InvalidCardException {
-        new ConsoleMenu();
+        ConsoleMenu consoleMenu = new ConsoleMenu();
         SimulatorDriver simulatorDriver = new SimulatorDriver();
         try {
-            simulatorDriver.simulation();
+            simulatorDriver.simulation(consoleMenu.enterSimulationTryAmount());
         } catch ( InvalidCardException e) {
             e.printStackTrace();
         }

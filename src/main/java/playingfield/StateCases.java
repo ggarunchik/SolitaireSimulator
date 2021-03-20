@@ -1,5 +1,6 @@
 package playingfield;
 
+import playingcards.Card;
 import playingcards.InvalidCardException;
 import playingcards.PlayingCard;
 
@@ -8,15 +9,13 @@ import java.util.HashMap;
 
 public interface StateCases {
 
-    PlayingCard getCurrentHandCard();
-
     HashMap<Integer, PlayingCard> checkForPlayableCards() throws IOException, InvalidCardException;
 
     void playCard() throws IOException, InvalidCardException;
 
-    void takeCardFromDeck();
+    void takeCardFromDeck() throws InvalidCardException;
 
-    void playPlusFive();
+    void playPlusFive() throws InvalidCardException;
 
-    void playWildCard();
+    void playWildCard() throws InvalidCardException;
 }
