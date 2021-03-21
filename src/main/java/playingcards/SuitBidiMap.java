@@ -1,8 +1,4 @@
-package playingcards;/*
- * Created July 2, 2016
- * Author: Alexander Zhu
- * Coauthor: Jason Zhu
- */
+package playingcards;
 
 import org.apache.commons.collections4.BidiMap;
 import org.apache.commons.collections4.bidimap.TreeBidiMap;
