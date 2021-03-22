@@ -3,17 +3,20 @@ package utils;
 import java.util.Scanner;
 
 public class ConsoleInputHandler {
-    private static Scanner scanner = new Scanner(System.in);
 
     public static int readUserInput() {
-        int input;
-        while (!scanner.hasNextInt()) {
-            String userInput = scanner.next();
-            System.out.printf("\"%s\" is not INT.\n", userInput);
+        Scanner sc = new Scanner(System.in);
+        while (true) {
+            String line = sc.nextLine();
+            try {
+                int n = Integer.parseInt(line);
+                if (n > 0) {
+                    return n;
+                }
+            } catch (NumberFormatException e) {
+                //empty body I want it to go to the next line
+            }
+            System.out.print("Error: input must be a positive integer.\n");
         }
-        input = scanner.nextInt();
-        return input;
-
-
     }
 }
