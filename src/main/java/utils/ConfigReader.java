@@ -8,12 +8,13 @@ import java.nio.file.Paths;
 
 public class ConfigReader {
     private static final String CONFIG_PATH = "src/main/resources/level_config.txt";
+    private static int vertex = getConfigLine(1).length;
 
-    public static int[][] getMatrixConfig()  {
-        int[][] myArray = new int[5][5];
+    public static int[][] getMatrixConfig() {
+        int[][] myArray = new int[vertex][vertex];
         int count = 1;
 
-        if (count <= 5) {
+        if (count <= vertex) {
             for (int j = 0; j < myArray.length; j++) {
                 String[] extractedLine = new String[0];
                 try {
