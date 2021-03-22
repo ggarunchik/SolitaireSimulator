@@ -8,7 +8,7 @@ import java.nio.file.Paths;
 
 public class ConfigReader {
     private static final String CONFIG_PATH = "src/main/resources/level_config.txt";
-    private static int vertex = getConfigLine(1).length;
+    private static final int vertex = getConfigLine(1).length;
 
     public static int[][] getMatrixConfig() {
         int[][] myArray = new int[vertex][vertex];
